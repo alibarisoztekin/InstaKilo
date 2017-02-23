@@ -100,31 +100,34 @@
     
 }
 
-//-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-//    
-//    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-//        PhotosCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"sectionHeader" forIndexPath:indexPath];
-//        if(self.currentSegmentIndex == 0){
-//            NSString* sectionKey = [self.subjects objectAtIndex:indexPath.section];
-//            headerView.sectionName.text = sectionKey;
-//        }
-//        else if(self.currentSegmentIndex == 1){
-//            NSString* sectionKey = [self.locations objectAtIndex:indexPath.section];
-//            headerView.sectionName.text = sectionKey;
-//        }
-//
-//        return headerView;
-//    }
-//    return nil;
-//}
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        PhotosCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
+        if(self.currentSegmentIndex == 0){
+            NSString* sectionKey = [self.subjects objectAtIndex:indexPath.section];
+            headerView.sectionName.text = sectionKey;
+            [headerView.sectionName sizeToFit];
+        }
+        else if(self.currentSegmentIndex == 1){
+            NSString* sectionKey = [self.locations objectAtIndex:indexPath.section];
+            headerView.sectionName.text = sectionKey;
+            [headerView.sectionName sizeToFit];
+
+        }
+
+        return headerView;
+    }
+    return nil;
+}
 
 
 #pragma mark - Setup Data -
 
 -(void) setupPhotos
 {
-    Photos* photo1 = [[Photos alloc] initWithImage:[UIImage imageNamed:@"cypress1"] subject:@"@People" location:@"Cypress"];
-    Photos* photo2 = [[Photos alloc] initWithImage:[UIImage imageNamed:@"cypress2"] subject:@"@Nature" location:@"Cypress"];
+    Photos* photo1 = [[Photos alloc] initWithImage:[UIImage imageNamed:@"cypress1"] subject:@"People" location:@"Cypress"];
+    Photos* photo2 = [[Photos alloc] initWithImage:[UIImage imageNamed:@"cypress2"] subject:@"Nature" location:@"Cypress"];
     Photos* photo3 = [[Photos alloc] initWithImage:[UIImage imageNamed:@"cypress3"] subject:@"Landscape" location:@"Cypress"];
     Photos* photo4 = [[Photos alloc] initWithImage:[UIImage imageNamed:@"cypress4"] subject:@"Landscape" location:@"Cypress"];
     Photos* photo5 = [[Photos alloc] initWithImage:[UIImage imageNamed:@"dentrys1"] subject:@"People" location:@"Dentrys"];
